@@ -1,0 +1,75 @@
+# Base configuration for Stat-Arb V6
+# -----------------------------------------------------------------------------
+
+# -----------------------------
+# Universe definition
+# -----------------------------
+universe:
+  start_date: 2024-01-01
+  end_date: 2025-09-27   # today, resolved dynamically in code
+  industries:
+    Energy: [XOM, CVX, BP, COP, OXY]
+    Airlines: [DAL, AAL, UAL, LUV, JBLU]
+    ConsumerStaples_Beverages: [KO, PEP, KDP, MNST, STZ]
+    Banks: [JPM, BAC, C, WFC, GS]
+    Utilities: [NEE, DUK, SO, EXC, AEP]
+
+# -----------------------------
+# Windows & protocol
+# -----------------------------
+windows:
+  formation: 252    # ~1Y daily trading days
+  trade: 63         # ~3M daily trading days
+  step: 21          # monthly step forward
+
+# -----------------------------
+# Statistical gates
+# -----------------------------
+gates:
+  adf_pvalue: 0.1716
+  ar1_rho_bounds: [0.0, 1.0]
+  half_life: [3, 60]
+  time_stop_multiple: 4.0
+  fdr_alpha: 0.1192
+
+# -----------------------------
+# Trading signals
+# -----------------------------
+signals:
+  entry_z: 1.7461
+  exit_z: 0.5676
+  hard_stop_z: 5
+  z_source: robust          #standard | robust
+  confirm_days: 2
+
+# -----------------------------
+# Risk & portfolio caps
+# -----------------------------
+risk:
+  target_vol_annual: 0.10   # 10% vol target
+  max_gross_leverage: 2.0   # cap on gross exposure
+  max_active_spreads: 3
+
+# -----------------------------
+# Costs & frictions
+# -----------------------------
+costs:
+  commission_per_share: 0.001     #0.001
+  half_spread_ticks: 0.5          #1
+  slippage_bps: 2                 #2
+  slippage_sensitivity: 0.5       # +/- 50% for stress tests
+
+# -----------------------------
+# Outputs
+# -----------------------------
+outputs:
+  results_dir: results/
+  figures_dir: results/figures/
+  tables_dir: results/tables/
+  logs_dir: results/logs/
+  
+execution:
+  act_at_next_bar: true
+
+entry_filter:
+  cost_edge_k: 5.0

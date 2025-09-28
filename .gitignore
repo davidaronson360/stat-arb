@@ -1,0 +1,14 @@
+# --- Python build junk ---
+__pycache__/
+*.pyc
+*.pyo
+
+# --- macOS Finder junk ---
+**/.DS_Store
+
+# --- IDE/project metadata ---
+.spyproject/
+
+# --- Local scratch space ---
+tmp/
+
